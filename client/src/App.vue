@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header />
-    <router-view />
+    <router-view class="p-10" />
   </div>
 </template>
 <script>
