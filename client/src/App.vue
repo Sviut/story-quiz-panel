@@ -1,10 +1,19 @@
 <template>
-  <div class="h-screen">
+  <div class="main">
+    <Header />
     <router-view />
   </div>
 </template>
 <script>
-export default {};
+import Header from "@/components/Header";
+
+export default {
+  components: { Header }
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+.main {
+  height: calc(100vh - 65px);
+}
+</style>
