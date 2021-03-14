@@ -1,5 +1,5 @@
 <template>
-  <div class="flex  px-10 py-5 bg-blue-600 text-white">
+  <div class="flex px-10 py-5 bg-blue-600 text-white">
     <router-link class="uppercase font-bold" to="/"
       >Story Quiz Panel</router-link
     >
