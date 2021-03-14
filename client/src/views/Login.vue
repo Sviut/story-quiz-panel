@@ -6,15 +6,15 @@
       <div class="flex flex-col mb-4">
         <label
           class="mb-2 uppercase font-bold text-sm text-grey-darkest"
-          for="login"
-          >Login</label
+          for="username"
+          >Username</label
         >
         <input
-          v-model="login"
+          v-model="username"
           class="border py-2 px-3 text-grey-darkest"
           type="text"
-          name="login"
-          id="login"
+          name="username"
+          id="username"
         />
       </div>
       <div class="flex flex-col mb-4">
@@ -44,26 +44,38 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
+
 export default {
   name: "Login",
   data() {
     return {
-      login: "",
+      username: "",
       password: ""
     };
   },
   computed: {
+    ...mapGetters(["user"]),
     disabledBtn() {
-      return !this.login || !this.password;
+      return !this.username || !this.password;
     }
   },
   methods: {
+    ...mapActions(["login"]),
     submit() {
       const user = {
-        login: this.login,
+        login: this.username,
         password: this.password
       };
-      console.log(user);
+      this.login(user)
+        .then(res => {
+          if (res.data.success) {
+            this.$router.push("/dashboard");
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   }
 };

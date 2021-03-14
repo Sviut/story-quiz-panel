@@ -19,6 +19,7 @@ const actions = {
   // Login Action
   async login({ commit }, user) {
     commit("auth_request");
+    console.log(user);
     try {
       let res = await axios.post("/api/users/login", user);
       if (res.data.success) {
