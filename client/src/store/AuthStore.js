@@ -19,18 +19,12 @@ const actions = {
   // Login Action
   async login({ commit }, user) {
     commit("auth_request");
-    console.log(user);
     try {
       let res = await axios.post("/api/users/login", user);
-      if (res.data.success) {
-        const token = res.data.token;
-        const user = res.data.user;
-        // Store the token into the localstorage
-        localStorage.setItem("token", token);
-        // Set the axios defaults
-        axios.defaults.headers.common["Authorization"] = token;
-        commit("auth_success", token, user);
-      }
+      const token = res.data.token;
+      localStorage.setItem("token", token);
+      axios.defaults.headers.common["Authorization"] = token;
+      commit("auth_suc	cess", token, user);
       return res;
     } catch (err) {
       commit("auth_error", err);
@@ -52,7 +46,7 @@ const actions = {
   // Get the user Profile
   async getProfile({ commit }) {
     commit("profile_request");
-    let res = await axios.get("/api/users/profile");
+    let res = await axios.get("/api/users/dashboard");
     commit("user_profile", res.data.user);
     return res;
   },
