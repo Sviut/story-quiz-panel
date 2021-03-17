@@ -1,14 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
 const mongoose = require('mongoose');
+const router = require('./routers');
 
 const app = express();
-app.use(express.json());
 app.use(cors());
-
-const users = require('./routers/api/user');
-app.use('/api/users', users);
+app.use(express.json());
+app.use('/api', router);
 
 const start = async () => {
 	try {
