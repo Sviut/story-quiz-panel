@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
 const UserSchema = new Schema({
-	username: {
+	email: {
 		type: String,
 		required: true,
 	},
@@ -10,6 +10,10 @@ const UserSchema = new Schema({
 		type: String,
 		required: true,
 	},
+	quizList: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Quiz',
+	}],
 	date: {
 		type: Date,
 		default: Date.now,
