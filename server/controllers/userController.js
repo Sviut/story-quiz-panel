@@ -25,7 +25,7 @@ class UserController {
 		const hashPassword = await bcrypt.hash(password, 5);
 		const user = new User({ email, password: hashPassword });
 		await user.save();
-		const token = generateJwt(user.id);
+		const token = generateJwt(user.id, email);
 		return res.json({ token });
 	}
 
@@ -45,11 +45,8 @@ class UserController {
 	}
 
 	async check (req, res, next) {
-		const { id } = req.query;
-		if (!id) {
-			return next(ApiError.badRequest('Don\'t have ID'));
-		}
-		res.json(id);
+		const token = generateJwt(req.user.id, req.user.email);
+		return res.json({ token });
 	}
 }
 

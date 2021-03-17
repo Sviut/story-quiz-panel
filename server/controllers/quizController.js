@@ -1,5 +1,3 @@
-const mongoose = require('mongoose');
-const { ObjectId } = mongoose;
 const QuizModel = require('../models/Quiz');
 const UserModel = require('../models/User');
 
